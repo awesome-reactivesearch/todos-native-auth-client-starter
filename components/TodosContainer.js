@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import { ScrollView, StyleSheet, FlatList, StatusBar, Button, Alert, Platform } from 'react-native';
 import { View } from 'native-base';
 import { ReactiveList } from '@appbaseio/reactivesearch-native';
-import Auth0 from 'react-native-auth0';
-const auth0 = new Auth0({ domain: 'divyanshu.auth0.com', clientId: '6ZR8Jgj6Gzy1onJhrO0egEbfudIBVZNP' });
+// create auth0 service first here
 
 import Utils from '../utils';
 import TODO_TYPE from '../types/todo';
@@ -48,8 +47,6 @@ export default class TodosContainer extends React.Component {
   }
 
   onAllData = (todos, streamData) => {
-    // console.log('@onAllData - todos: ', todos);
-    // console.log('@onAllData - streamData: ', streamData);
     const todosData = Utils.mergeTodos(todos, streamData);
 
     // filter data based on "screen": [All | Active | Completed]
@@ -65,7 +62,7 @@ export default class TodosContainer extends React.Component {
             todo={todo}
             onUpdate={this.api.update}
             onDelete={this.api.destroy}
-            screenProps={this.props.screenProps}
+            // pass via props
           />
         )}
       />
@@ -88,7 +85,6 @@ export default class TodosContainer extends React.Component {
   };
 
   render() {
-    const { accessToken, handleLogin, handleLogout } = this.props.screenProps;
     const isAndroid = Platform.OS === 'android';
     return (
       <View style={{ flex: 1 }}>
@@ -99,14 +95,7 @@ export default class TodosContainer extends React.Component {
           <StatusBar backgroundColor={COLORS.primary} barStyle="dark-content" />
         )}
         <ScrollView>
-          <Button
-            title={accessToken ? 'Logout' : 'Login to modify'}
-            onPress={accessToken ? handleLogout : handleLogin}
-            style={{
-              marginTop: 10,
-              marginBottom: 10
-            }}
-          />
+          {/* Add Login button */}
           <ReactiveList
             componentId="ReactiveList"
             onAllData={this.onAllData}
@@ -125,7 +114,7 @@ export default class TodosContainer extends React.Component {
               <AddTodo
                 onAdd={(todo) => {
                   this.setState({ addingTodo: false });
-                  this.api.add(todo, this.props.screenProps);
+                  this.api.add(todo, {});
                 }}
                 onCancelDelete={() => this.setState({ addingTodo: false })}
                 onBlur={() => this.setState({ addingTodo: false })}

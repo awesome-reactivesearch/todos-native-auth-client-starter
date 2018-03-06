@@ -1,9 +1,6 @@
 import CONFIG from './../constants/Config';
 
-const getHeaders = (accessToken) => ({
-  'Content-Type': 'application/json',
-  'Authorization': `Bearer ${accessToken}`
-});
+// add function to getHeaders
 
 const logger = message => console.log(message);
 
@@ -21,63 +18,18 @@ class TodoModel {
   }
 
   add(todo, screenProps) {
-    if (!screenProps.accessToken) {
-      console.log('Access Token not present');
-      return;
-    }
-    const body = JSON.stringify({
-      title: todo.title,
-      name: screenProps.name,
-      avatar: screenProps.avatar
-    });
-
-    fetch(CONFIG.server, {
-      method: 'POST',
-      headers: getHeaders(screenProps.accessToken),
-      body
-    })
-      .then(res => res.json())
-      .then(logger)
-      .catch(logger);
+    // add todo API goes here
+    console.log('Called add API')
   }
 
   update = (todo, screenProps) => {
-    if (!screenProps.accessToken) {
-      console.log('Access Token not present');
-      return;
-    }
-    const body = JSON.stringify({
-        completed: todo.completed,
-        id: todo._id
-    });
-
-    fetch(CONFIG.server, {
-      method: 'PUT',
-      headers: getHeaders(screenProps.accessToken),
-      body
-    })
-      .then(res => res.json())
-      .then(logger)
-      .catch(logger);
+    // update todo API goes here
+    console.log('Called update API')
   };
 
   destroy = (todo, screenProps) => {
-    if (!screenProps.accessToken) {
-      console.log('Access Token not present');
-      return;
-    }
-    const body = JSON.stringify({
-      id: todo._id
-    });
-
-    fetch(CONFIG.server, {
-      method: 'DELETE',
-      headers: getHeaders(screenProps.accessToken),
-      body
-    })
-      .then(res => res.json())
-      .then(logger)
-      .catch(logger);
+    // delete todo API goes here
+    console.log('Called delete API')
   };
 }
 

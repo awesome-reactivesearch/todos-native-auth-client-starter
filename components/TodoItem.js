@@ -35,7 +35,7 @@ class TodoItem extends Component {
     propAction({
       ...todo,
       completed: !todo.completed,
-    }, this.props.screenProps);
+    }, {});
   };
 
   render() {
@@ -85,7 +85,7 @@ class TodoItem extends Component {
           </TouchableOpacity>
           <Thumbnail source={{ uri: todo.avatar }} />
           <TouchableOpacity
-            onPress={() => onDelete(todo, this.props.screenProps)}
+            onPress={() => onDelete(todo, {})}
             style={{ paddingLeft: 25, paddingRight: 15 }}
           >
             <Icon
