@@ -1,4 +1,4 @@
-# Todos Native Auth Client
+# Todos Native Auth Client (Starter)
 
 A React Native app built with
 
@@ -7,11 +7,11 @@ A React Native app built with
 - Appbase.io
 - :heart:
 
-Check the corresponding Node/Express server [here](https://github.com/appbaseio-apps/todos-native-auth-server).
+Check the corresponding Node/Express server starter [here](https://github.com/appbaseio-apps/todos-native-auth-server-starter).
 
 ## Usage
 
-1. Clone and setup the server from [here](https://github.com/appbaseio-apps/todos-native-auth-server)
+1. Clone and setup the server from [here](https://github.com/appbaseio-apps/todos-native-auth-server-starter)
 
 2. Clone this repo
 
